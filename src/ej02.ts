@@ -13,14 +13,16 @@
 // parseAndAdd("1.5", "2.5") → 4
 // parseAndAdd("abc", "4") → throws Error("invalid number")
 export function parseAndAdd(a: string, b: string): number {
-  throw new Error("TODO: implementar");
+  const x = Number(a), y = Number(b);
+  if (isNaN(x) || isNaN(y)) throw new Error("invalid number");
+  return x + y;
 }
 
 // 2b. Retorna solo los elementos de tipo number de la lista (5 pts).
 // Usar typeof para type narrowing — TypeScript conoce el tipo dentro de cada rama.
 // onlyNumbers([1, "hola", 2, true, 3.5]) → [1, 2, 3.5]
 export function onlyNumbers(items: Array<string | number | boolean>): number[] {
-  throw new Error("TODO: implementar");
+  return items.filter((x): x is number => typeof x === "number");
 }
 
 // 2c. Agrupa los elementos por tipo (5 pts).
@@ -32,7 +34,13 @@ export interface TypeGroups {
   booleans: boolean[];
 }
 export function groupByType(items: Array<string | number | boolean>): TypeGroups {
-  throw new Error("TODO: implementar");
+  const strings: string[] = [], numbers: number[] = [], booleans: boolean[] = [];
+  for (const item of items) {
+    if (typeof item === "string") strings.push(item);
+    else if (typeof item === "number") numbers.push(item);
+    else booleans.push(item);
+  }
+  return {strings, numbers, booleans};
 }
 
 // 2d. Aplica una función dos veces al valor (5 pts).
@@ -41,5 +49,5 @@ export function groupByType(items: Array<string | number | boolean>): TypeGroups
 // applyTwice((x: number) => x * 2, 3) → 12   (fn(fn(3)) = fn(6) = 12)
 // applyTwice((x: string) => x + "!", "hola") → "hola!!"
 export function applyTwice<T>(fn: (x: T) => T, value: T): T {
-  throw new Error("TODO: implementar");
+  return fn(fn(value));
 }
