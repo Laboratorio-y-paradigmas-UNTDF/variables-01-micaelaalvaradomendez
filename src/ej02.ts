@@ -35,6 +35,8 @@ export interface TypeGroups {
 }
 export function groupByType(items: Array<string | number | boolean>): TypeGroups {
   const strings: string[] = [], numbers: number[] = [], booleans: boolean[] = [];
+  // el profe definio groups donde almaceno los diferetnes tipos
+  // revisar como cambia su implementacion de la mia
   for (const item of items) {
     if (typeof item === "string") strings.push(item);
     else if (typeof item === "number") numbers.push(item);
